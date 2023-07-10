@@ -1,54 +1,33 @@
-import java.util.Stack;
 import java.util.Scanner;
 public class Main {
+
     public static void main(String[] args) {
-        Stack<String> front = new Stack<>();
-        Stack<String> NOW = new Stack<>();
-        Stack<String> back = new Stack<>();
         Scanner in = new Scanner(System.in);
+        System.out.print("학생수 : ");
+        int arrlen = in.nextInt();
+        int count = 0;
+        boolean act = true;
         String cmd;
-        NOW.push("http://www.acm.org/");
-        while(true) {
-            cmd = in.nextLine();
+        String[] studentName = new String[arrlen];
+//        int[] studentNumber = new int[arrlen];
+//        int[] score = new int[arrlen];
+        for(int i = 0; i <= arrlen; i++) {
+            cmd = in.next();
+            switch (cmd) {
+                case "i":
+                    System.out.print("학생을 등록합니다.: ");
+                    studentName[arrlen] = in.nextLine();
+                    break;
 
-            if(cmd.contains("VISIT ")) {
-                cmd = cmd.replaceAll("VISIT ", "");
-
-                back.push(NOW.peek());
-                NOW.pop();
-                NOW.push(cmd);
-                System.out.println(NOW.peek());
-                front.clear();
-                continue;
             }
-
-            if(cmd.equals("BACK")) {
-                if(back.empty()) {
-                    System.out.println("Ignored");
-                    continue;
-                }
-                front.push(NOW.peek());
-                NOW.pop();
-                NOW.push(back.peek());
-                System.out.println(back.peek());
-                back.pop();
-            }
-
-            if(cmd.equals("FORWARD")) {
-                if(front.empty()) {
-                    System.out.println("Ignored");
-                    continue;
-                }
-                back.push(NOW.peek());
-                NOW.pop();
-                NOW.push(front.peek());
-                System.out.println(NOW.peek());
-                front.pop();
-            }
-
-            if(cmd.equals("QUIT")){break;}
+        }
+        for(int i =0; i < studentName.length; i++) {
+            System.out.print(studentName[i]);
         }
 
-    }
 
+
+
+    }
 }
+
